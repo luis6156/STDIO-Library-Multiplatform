@@ -1,0 +1,17 @@
+COMPILER = gcc
+LIBRARY_FLAG = -shared
+FLAGS = -Wall -Wextra -Wunused-variable -Wno-unused-result -Wunused-value -Wunused-parameter -fPIC -g
+
+all: build
+
+.PHONY: clean
+
+build: so_stdio.o
+	$(COMPILER) $(LIBRARY_FLAG) $^ -o libso_stdio.so
+
+so_stdio.o: so_stdio.c
+	$(COMPILER) $(FLAGS) -c $^
+
+clean:
+	rm -rf *.o
+	rm -rf libso_stdio.so
